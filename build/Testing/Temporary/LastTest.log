@@ -1,0 +1,67 @@
+Start testing: Nov 13 10:20 CET
+----------------------------------------------------------
+1/1 Testing: UnitShellTests
+1/1 Test: UnitShellTests
+Command: "/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/allShellTests.rb"
+Directory: /user/2/.base/matterv/home/TP/SEPC/ensimag-shell/build
+"UnitShellTests" start time: Nov 13 10:20 CET
+Output:
+----------------------------------------------------------
+Run options: --seed 42464
+
+# Running:
+
+FFFFF..FFF
+
+Finished in 8.438278s, 1.1851 runs/s, 1.1851 assertions/s.
+
+  1) Failure:
+Test3Jobs#test_inout [/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/testJobs.rb:25]:
+le ls n'a pas afficher la taille du fichier.
+Expected nil to not be nil.
+
+  2) Failure:
+Test2InOut#test_pipe [/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/testInOut.rb:42]:
+sortie incohérente pour ls | wc -l.
+Expected nil to not be nil.
+
+  3) Failure:
+Test2InOut#test_parallelisme [/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/testInOut.rb:63]:
+le | ne semble pas parallèle.
+Expected nil to not be nil.
+
+  4) Failure:
+Test2InOut#test_inoutpipe [/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/testInOut.rb:50]:
+cat titiExpect.txt titiExpect.txt n'a pas rendu deux fois le même entier à la suite.
+Expected nil to not be nil.
+
+  5) Failure:
+Test2InOut#test_inout [/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/testInOut.rb:27]:
+sortie incohérente pour ls -l.
+Expected nil to not be nil.
+
+  6) Failure:
+Test1ForkExec#test_all [/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/testForkExec.rb:38]:
+Sortie incohérente pour 'seq 0 3'.
+Expected nil to not be nil.
+
+  7) Failure:
+Test1ForkExec#test_printf [/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/testForkExec.rb:44]:
+Sortie incohérente pour 'seq 0 3'.
+Expected nil to not be nil.
+
+  8) Failure:
+Test1ForkExec#test_seq [/user/2/.base/matterv/home/TP/SEPC/ensimag-shell/tests/testForkExec.rb:38]:
+Sortie incohérente pour 'seq 0 3'.
+Expected nil to not be nil.
+
+10 runs, 10 assertions, 8 failures, 0 errors, 0 skips
+<end of output>
+Test time =   8.56 sec
+----------------------------------------------------------
+Test Failed.
+"UnitShellTests" end time: Nov 13 10:20 CET
+"UnitShellTests" time elapsed: 00:00:08
+----------------------------------------------------------
+
+End testing: Nov 13 10:20 CET
