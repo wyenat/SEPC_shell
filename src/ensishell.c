@@ -28,6 +28,19 @@
 #if USE_GUILE == 1
 #include <libguile.h>
 
+void jobs(struct job *travail){
+		/* Print current background jobs */
+		printf("\nPID        NAME");
+		while (strncmp(travail->name, "bad", 3)){
+			if (!waitpid(travail->pid, NULL, WNOHANG)){
+				printf("\n%i:     %s", travail->pid, travail->name);
+			}
+			travail = travail->suivant;
+		}
+		printf("\n");
+}
+
+
 int question6_executer(char *line)
 {
 	/* Question 6: Insert your code to execute the command line
@@ -71,11 +84,16 @@ int main() {
         scm_c_define_gsubr("executer", 1, 0, 0, executer_wrapper);
 #endif
 
+struct job *job = malloc(sizeof(struct job));
+job->suivant = NULL;
+job->pid = 0;
+job->name = "bad";
 	while (1) {
 		struct cmdline *l;
 		char *line=0;
 		int i, j;
 		char *prompt = "ensishell>";
+		/* Add linked list jobs */
 
 		/* Readline use some internal memory structure that
 		   can not be cleaned at the end of the program. Thus
@@ -83,6 +101,9 @@ int main() {
 		line = readline(prompt);
 		if (line == 0 || ! strncmp(line,"exit", 4)) {
 			terminate(line);
+		}
+		if (! strncmp(line, "jobs", 4)) {
+			jobs(job);
 		}
 
 #if USE_GNU_READLINE == 1
@@ -135,8 +156,14 @@ int main() {
 				terminate(0);
 			} else {
 				if (!l->bg){
-					printf("pid = %i \n", pid);
 					waitpid(pid, NULL, 0);
+				} else{
+					struct job *precede = malloc(sizeof(struct job));
+					precede->pid = pid;
+					precede->name = malloc(strlen(cmd[0])*sizeof(char)+1);
+					strcpy(precede->name, cmd[0]);
+					precede->suivant = job;
+					job = precede;
 				}
 			}
 			// if (cmd[0] != NULL){printf("\n");}
